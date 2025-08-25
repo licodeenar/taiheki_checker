@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>体癖チェッカー</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="icon" href="./img/favicon.png">
+</head>
+<body>
+  <header>
+    <a href="https://note.com/licodeenar/"><img class="cp_icon" src="./img/favicon.png"></a>
+  </header>
+  <main>
+    <div class="cp_contents">
+      <h1 class="c_title">体癖チェッカー</h1>
+      <p class="c_title">当てはまるものにチェックしてください。<br>
+        <strong style="color:crimson;">※この設問はAIが一般的な情報をもとにまとめたものです。<br>
+        　正確な評価を求める場合は専門家にご相談ください。</strong>
+      </p>
 
+      <div id="questions"></div>
+      <div style="text-align: center;">
+        <button class="cp_button" onclick="submitSurvey()">結果を見る</button> &nbsp;
+        <button class="cp_button" onclick="clearSurvey()">クリア</button>
+      </div>
+
+      <script src="./assets/script-que.js"></script>
+    </div>
+  </main>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8WE2GBHQ3"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-L8WE2GBHQ3");
+  </script>
+  <!-- // ここまで Google Analytics -->
+</body>
+</html>
