@@ -11,6 +11,7 @@ body {
 
 header .cp_icon {
     width: 32px;
+    border-radius: 50%;
 }
 
 .category {
