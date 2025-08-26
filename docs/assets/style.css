@@ -21,7 +21,12 @@ header .cp_icon {
     background: #fafafa;
 }
 
+h1 {
+    font-size: 1.5rem;
+}
+
 h2 {
+    font-size: 1.5rem;
     margin-top: 0;
 }
 
