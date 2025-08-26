@@ -21,7 +21,7 @@ const customOrderDisp = ["1種（上下:陽）","2種（上下:陰）","4種（�
 const sortedValues = [...orderedValues]
     .map((value, index) => ({ value, index }))
     .sort((a, b) => b.value - a.value)
-    .slice(0, 1)
+    .slice(0, 3)
     .map(item => item.index);
     
 // 上位3位の表示名を取得
@@ -30,7 +30,7 @@ const top3Names = sortedValues.map(index => customOrderDisp[index]);
 // HTMLのh2タグを更新
 const titleElement = document.getElementById('chart-title');
 if (top3Names.length > 0) {
-    titleElement.innerHTML = `結果：${top3Names.join('、')}`;
+    titleElement.innerHTML = `得点の高かった体癖:<br> ${top3Names.join('<br>')}`;
 } 
 
 
