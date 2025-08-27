@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         titleElement.innerHTML = `得点の高かった体癖:<br> ${top3Names.join('<br>')}`;
     } 
 
-
     const ctx = document.getElementById('myRadarChart').getContext('2d');
     new Chart(ctx, {
         type: 'radar',
@@ -64,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-
     // --- 体癖の説明文マップ ---
     const typeDescriptions = {
         '1種（上下:陽）': '<b>特徴:頭脳型</b><br>考えてから行動する。積極的に「ああしよう」「こうしよう」とあらゆる状況に考えを巡らせる。妄想や空想が好き。知的好奇心が旺盛。ただ、実行は苦手。やきもきせず、計画だけして誰かに実行してもらうのがよい。自分が納得してしまうと歯磨き粉を薬だと思い込んで効いてしまうくらい単純なところもある。<br><br>頭で考えること自体が発散になる。',
@@ -84,11 +82,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (top3Names.length > 0) {
         let html = ``;
         top3Names.forEach(name => {
-            html += `<table class="chart_list"><tbody>`;
-            html += `<tr><th>${name}</th></tr>`;
-            html += `<tr><td>${typeDescriptions[name]}</td></tr>`;
-            html += `</tbody></table><br>`;
+            html += setTable(name);
         });
         resultDiv.innerHTML = html;
+    }
+
+    // 全ての体癖を表示する関数
+    window.showAllTeiheki = function() {
+        const allTeihekiNames = Object.keys(typeDescriptions);
+        let allHtml = '';
+        allTeihekiNames.forEach(name => {
+            allHtml += setTable(name); 
+        });
+        resultDiv.innerHTML = allHtml; // result-tableの中身を上書き
+    };
+
+    //体癖の説明テーブルを生成
+    function setTable(name){
+        let html = ``;
+        html += `<table class="chart_list"><tbody>`;
+        html += `<tr><th>${name}</th></tr>`;
+        html += `<tr><td>${typeDescriptions[name]}</td></tr>`;
+        html += `</tbody></table><br>`;
+        return html;
     }
 });
