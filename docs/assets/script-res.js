@@ -24,9 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .sort((a, b) => b.value - a.value)
         .slice(0, 3)
         .map(item => item.index);
-        
-    // 上位2位以降の表示名を取得
-    const otherNames = sortedValues.slice(1).map(index => `${customOrderDisp[index]}: ${orderedValues[index]}点`);
 
     // HTMLのh2タグを更新
     const titleElement = document.getElementById('chart-title');
@@ -35,8 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if(titleElement){
         titleElement.innerHTML = `${customOrderDisp[sortedValues[0]]}: ${orderedValues[sortedValues[0]]}点`;
     }
-    //２位以降
+    //２位、３位
     if (subTitleElement) {
+        const otherNames = sortedValues.slice(1).map(index => `${customOrderDisp[index]}: ${orderedValues[index]}点`);
         subTitleElement.innerHTML = `${otherNames.join('<br>')}`;
     }
 
@@ -86,7 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- resulttable に表示 ---
     const resultDiv = document.getElementById('result-table');
-    if (top3Names.length > 0) {
+    const top3Names = sortedValues.map(index => customOrderDisp[index]);
+    if (top3Names.length > 0 && resultDiv) {
         let html = ``;
         top3Names.forEach(name => {
             html += setTable(name);
