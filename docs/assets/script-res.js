@@ -25,15 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
         .slice(0, 3)
         .map(item => item.index);
         
-    // 上位3位の表示名を取得
-    const top3Names = sortedValues.map(index => customOrderDisp[index]);
+    // 上位2位以降の表示名を取得
+    const otherNames = sortedValues.slice(1).map(index => `${customOrderDisp[index]}: ${orderedValues[index]}点`);
 
     // HTMLのh2タグを更新
     const titleElement = document.getElementById('chart-title');
-    if (top3Names.length > 0) {
-        titleElement.innerHTML = `得点の高かった体癖:<br> ${top3Names.join('<br>')}`;
-    } 
+    const subTitleElement = document.getElementById('chart-title-sub');
+    //１位
+    if(titleElement){
+        titleElement.innerHTML = `${customOrderDisp[sortedValues[0]]}: ${orderedValues[sortedValues[0]]}点`;
+    }
+    //２位以降
+    if (subTitleElement) {
+        subTitleElement.innerHTML = `${otherNames.join('<br>')}`;
+    }
 
+    //レーダーチャート
     const ctx = document.getElementById('myRadarChart').getContext('2d');
     new Chart(ctx, {
         type: 'radar',
