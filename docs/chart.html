@@ -9,52 +9,52 @@
   <meta property="og:title" content="体癖チェッカー">
   <meta property="og:description" content="あなたの体癖タイプを判定します。">
   <meta property="og:locale" content="ja_JP">
-
   <link rel="stylesheet" href="./assets/style.css">
   <link rel="icon" href="./img/favicon.png">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <a href="https://note.com/licodeenar/"><img class="cp_icon" src="./img/profile.png"></a>
+    <a href="https://note.com/licodeenar/"><img class="cp_icon" src="./img/profile.png" alt="profile"></a>
   </header>
   <main>
-    <div class="cp_contents">
-      <h1 style="text-align: center;">得点の高かった体癖</h1>
-      <div style="text-align: center;" id="chart-title"></div>
-      <div style="text-align: center;" id="chart-title-sub"></div>
-      <div style="max-width: 600px; margin: auto;">
-          <canvas id="myRadarChart"></canvas>
-      </div>
-      <div style="text-align: center;">
-        <button class="cp_button" onclick="window.location.href='index.html'">判定ページに戻る</button>
-      </div>
-      <script src="./assets/script-res.js"></script>      
-      <br><br>
-      <p class="c_title">
-        各体癖の主な特徴は以下の通り。１〜３つの体癖を持つことが多いようです。<br>
-        得点の高かったいくつかの体癖の特徴を参照してみてください。
-      </p><br>
-      <h2 style="text-align: center;">各体癖の特徴</h2>
-      <div class="result-table" id="result-table"></div>
-      <div style="text-align: center;">
-        <button class="cp_button" onclick="showAllTeiheki()">他の種も表示する</button>
-      </div>
-
+    <div class="result-header">
+      <h1>診断結果</h1>
+      <p style="color:#777;font-size:0.88rem;margin-bottom:16px;">スコアの高い体癖ほどあなたの特性に近い傾向があります</p>
+      <div id="chart-title"></div>
+      <div id="chart-title-sub"></div>
     </div>
+
+    <div class="chart-wrap">
+      <canvas id="myRadarChart"></canvas>
+    </div>
+
+    <div style="text-align:center;margin-bottom:28px;">
+      <button class="cp_button" onclick="window.location.href='index.html'">もう一度診断する</button>
+    </div>
+
+    <p class="result-note">
+      体癖は１〜３つ持つことが多いと言われています。<br>
+      スコアの高かったいくつかの体癖の説明を参照してみてください。
+    </p>
+
+    <h2 style="font-size:1.1rem;color:#6c63ff;margin-bottom:12px;">各体癖の特徴</h2>
+    <div class="result-table" id="result-table"></div>
+
+    <div style="text-align:center;margin-top:20px;margin-bottom:8px;">
+      <button class="cp_button secondary" onclick="showAllTeiheki()">すべての体癖を表示する</button>
+    </div>
+
+    <script src="./assets/script-res.js"></script>
   </main>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8WE2GBHQ3"></script>
   <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-          dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-L8WE2GBHQ3");
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-L8WE2GBHQ3');
   </script>
-  <!-- // ここまで Google Analytics -->
 </body>
 </html>

@@ -1,169 +1,396 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-    margin: 0px;
-    background: #fff;
+    margin: 0;
+    background: #f7f8fc;
     font-size: 1.0rem;
     color: #333;
-    font-family: "Open Sans", "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+    font-family: "Open Sans", "游ゴシック体", YuGothic, "游ゴシック Medium",
+                 "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+    min-height: 100vh;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+header {
+    background: #fff;
+    border-bottom: 1px solid #e8e8f0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 header .cp_icon {
     width: 32px;
+    height: 32px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.category {
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 12px;
-    margin-bottom: 15px;
-    background: #fafafa;
+/* ============================================================
+   Layout
+   ============================================================ */
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
 }
 
-h1 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+/* ============================================================
+   Site title / intro
+   ============================================================ */
+.site-title {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #6c63ff;
+    letter-spacing: 0.04em;
 }
 
-h2 {
-    font-size: 1.5rem;
-    margin-top: 0;
+.site-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
-#chart-title{
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-#chart-title-sub{
-    font-size: 1.2rem;
-    --font-weight: bold;
-    margin-bottom: 15px;
+.site-caution {
+    text-align: center;
+    color: #e05050;
+    font-size: 0.8rem;
+    margin-bottom: 28px;
 }
 
-.cp_contents {
-    margin: 20px;
+/* ============================================================
+   Progress
+   ============================================================ */
+.progress-wrap {
+    margin-bottom: 20px;
 }
 
-.category h2 {
-    margin: 0px 5px;
-    color: #33a0d3;
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 6px;
 }
 
-@media (max-width: 670px) {
-    /*スマホ*/
-    body {
-        margin: 0px;
-    }
-    
-    .cp_contents {
-        margin: 20px 5px;
-    }
-    .category {
-        padding: 12px 2px;
-    }
-
-    main {
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    header {
-        text-align: right;
-        padding: 8px 20px;
-        height: 32px;
-        margin: 0px;
-        border-bottom: solid 1px #ccc;
-    }
+.progress-track {
+    height: 6px;
+    background: #e0e0ef;
+    border-radius: 99px;
+    overflow: hidden;
 }
 
-@media (max-width: 1100px) and (min-width: 671px) {
-    /* タブレット */
-    main {
-        margin: 0 auto;
-        width: 671px;
-    }
-
-    header {
-        text-align: right;
-        padding: 16px 20px;
-        height: 32px;
-        margin: 0px;
-        border-bottom: solid 1px #ccc;
-    }
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #6c63ff, #9b8fff);
+    border-radius: 99px;
+    transition: width 0.4s ease;
 }
 
-@media (min-width: 1101px) {
-    /* パソコン */
-    main {
-        margin: 0 auto;
-        width: 671px;
-    }
-
-    header {
-        text-align: right;
-        padding: 16px 20px;
-        height: 32px;
-        margin: 0px;
-        border-bottom: solid 1px #ccc;
-    }
+/* ============================================================
+   Question card
+   ============================================================ */
+.question-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 6px 28px rgba(108, 99, 255, 0.10);
+    padding: 32px 28px 28px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.35s ease both;
 }
 
-button {
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: 1px solid #888;
-    background: #f5f5f5;
+.question-number {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #6c63ff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.question-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #222;
+    min-height: 4em;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ============================================================
+   Rating buttons
+   ============================================================ */
+.rating-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.rating-btn {
+    flex: 1 1 calc(20% - 8px);
+    min-width: 56px;
+    max-width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px;
+    background: #fff;
+    border: 2px solid #dde0f0;
+    border-radius: 12px;
     cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* ボタン */
+.rating-btn:hover {
+    border-color: #a8a1ff;
+    background: #f5f3ff;
+}
+
+.rating-btn.selected {
+    border-color: #6c63ff;
+    background: #ede9ff;
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.18);
+}
+
+.rating-btn .score {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #6c63ff;
+}
+
+.rating-btn .score-label {
+    font-size: 0.68rem;
+    color: #888;
+    text-align: center;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.rating-btn.selected .score,
+.rating-btn.selected .score-label {
+    color: #4b43cc;
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.nav-btn {
+    padding: 10px 22px;
+    border-radius: 99px;
+    border: 2px solid #6c63ff;
+    background: #fff;
+    color: #6c63ff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #6c63ff;
+    color: #fff;
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.nav-btn.primary {
+    background: #6c63ff;
+    color: #fff;
+    border-color: #6c63ff;
+}
+
+.nav-btn.primary:hover {
+    background: #4b43cc;
+    border-color: #4b43cc;
+}
+
+/* ============================================================
+   Submit button (final screen)
+   ============================================================ */
+.submit-wrap {
+    text-align: center;
+    margin-top: 12px;
+}
+
 .cp_button {
     -webkit-appearance: none;
-    margin: 10px 0px;
+    display: inline-block;
+    margin: 10px 6px;
     color: #fff;
-    background-color: #33a0d3;
+    background: linear-gradient(135deg, #6c63ff, #9b8fff);
     border-radius: 100vh;
-    border: 0px;
-    padding: 1.0rem 2.0rem;
-    font-size: 1.5rem;
-    font-family: "Open Sans", "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
-    outline: none;
+    border: none;
+    padding: 1.0rem 2.4rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.30);
+    transition: opacity 0.18s, transform 0.18s;
+}
+
+.cp_button:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
 }
 
 .cp_button:active {
-    background-color: #3ec5ff;
-    outline: none;
+    opacity: 1;
+    transform: translateY(0);
 }
 
+.cp_button.secondary {
+    background: #fff;
+    color: #6c63ff;
+    border: 2px solid #6c63ff;
+    box-shadow: none;
+}
 
-/* テーブル */
+/* ============================================================
+   Result page
+   ============================================================ */
+.result-header {
+    text-align: center;
+    padding: 24px 0 8px;
+}
+
+.result-header h1 {
+    font-size: 1.5rem;
+    color: #6c63ff;
+    margin-bottom: 4px;
+}
+
+#chart-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+#chart-title-sub {
+    font-size: 1.0rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.chart-wrap {
+    max-width: 440px;
+    margin: 0 auto 24px;
+}
+
+/* ============================================================
+   Result table
+   ============================================================ */
 .chart_list {
     border-collapse: collapse;
-    border: solid 2px #33a0d3;
+    border: 2px solid #d0caff;
     width: 100%;
-}
-
-.chart_list td {
-    padding: 20px 10px;
-    border: 1px #000;
-    color: #333;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0;
 }
 
 .chart_list th {
-    color: #33a0d3;
-    background: #edf8fd;
-    padding: 10px 20px;
+    background: #ede9ff;
+    color: #4b43cc;
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 1.0rem;
+}
+
+.chart_list td {
+    padding: 16px;
+    color: #333;
+    line-height: 1.7;
+    font-size: 0.95rem;
 }
 
 .chart_list th,
 .chart_list td {
-    border: dashed 1px #33a0d3;
+    border: 1px solid #ddd8ff;
 }
 
 .result-table {
-    margin: 0px;
     margin-top: 20px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.result-note {
+    color: #777;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+/* ============================================================
+   Responsive — narrow screens
+   ============================================================ */
+@media (max-width: 480px) {
+    main {
+        padding: 16px 10px 50px;
+    }
+
+    .question-card {
+        padding: 24px 16px 20px;
+    }
+
+    .question-text {
+        font-size: 1.05rem;
+    }
+
+    .rating-group {
+        gap: 6px;
+    }
+
+    .rating-btn {
+        flex: 1 1 calc(33% - 6px);
+        max-width: unset;
+        padding: 10px 4px;
+    }
+
+    .rating-btn .score-label {
+        font-size: 0.62rem;
+    }
+
+    .nav-btn {
+        padding: 9px 16px;
+        font-size: 0.88rem;
+    }
 }

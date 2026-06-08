@@ -9,43 +9,82 @@
   <meta property="og:title" content="体癖チェッカー">
   <meta property="og:description" content="あなたの体癖タイプを判定します。">
   <meta property="og:locale" content="ja_JP">
-
-
   <link rel="stylesheet" href="./assets/style.css">
   <link rel="icon" href="./img/favicon.png">
 </head>
 <body>
   <header>
-    <a href="https://note.com/licodeenar/"><img class="cp_icon" src="./img/profile.png"></a>
+    <a href="https://note.com/licodeenar/"><img class="cp_icon" src="./img/profile.png" alt="profile"></a>
   </header>
   <main>
-    <div class="cp_contents">
-      <h1 class="c_title">体癖チェッカー</h1>
-      <p class="c_title">当てはまるものにチェックしてください。<br>
-        <strong style="color:crimson;">この質問はAIを使ってまとめたものです。正確な評価を求める場合は専門家にご相談ください。</strong>
-      </p>
+    <h1 class="site-title">体癖チェッカー</h1>
+    <p class="site-subtitle">各質問に対して、あなたにどれくらい当てはまるかを選んでください。</p>
+    <p class="site-caution">※ この質問はAIを使ってまとめたものです。正確な評価を求める場合は専門家にご相談ください。</p>
 
-      <div id="questions"></div>
-      <div style="text-align: center;">
-        <button class="cp_button" onclick="submitSurvey()">結果を見る</button> &nbsp;
-        <button class="cp_button" onclick="clearSurvey()">クリア</button>
+    <!-- プログレスバー -->
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progress-text">第 1 問 / 100 問</span>
+        <span id="progress-pct">0%</span>
       </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+      </div>
+    </div>
 
-      <script src="./assets/script-que.js"></script>
+    <!-- 質問カード -->
+    <div class="question-card" id="question-card">
+      <div class="question-number" id="question-number">Q1</div>
+      <div class="question-text" id="question-text"></div>
+    </div>
+
+    <!-- 5段階評価ボタン -->
+    <div class="rating-group" id="rating-group">
+      <button class="rating-btn" data-value="-2" onclick="selectRating(-2)">
+        <span class="score">−2</span>
+        <span class="score-label">まったく<br>違う</span>
+      </button>
+      <button class="rating-btn" data-value="-1" onclick="selectRating(-1)">
+        <span class="score">−1</span>
+        <span class="score-label">あまり<br>当てはまらない</span>
+      </button>
+      <button class="rating-btn" data-value="0" onclick="selectRating(0)">
+        <span class="score">0</span>
+        <span class="score-label">どちら<br>でもない</span>
+      </button>
+      <button class="rating-btn" data-value="1" onclick="selectRating(1)">
+        <span class="score">+1</span>
+        <span class="score-label">やや<br>当てはまる</span>
+      </button>
+      <button class="rating-btn" data-value="2" onclick="selectRating(2)">
+        <span class="score">+2</span>
+        <span class="score-label">当てはまる</span>
+      </button>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="nav-row">
+      <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">← 前へ</button>
+      <button class="nav-btn primary" id="btn-next" onclick="navigate(1)">次へ →</button>
+    </div>
+
+    <!-- 最終問：送信ボタン（最後の問題で表示） -->
+    <div class="submit-wrap" id="submit-wrap" style="display:none;">
+      <button class="cp_button" onclick="submitSurvey()">診断する</button>
+      <br>
+      <button class="cp_button secondary" onclick="clearSurvey()">最初からやり直す</button>
     </div>
   </main>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+  <script src="./assets/script-que.js"></script>
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L8WE2GBHQ3"></script>
   <script>
-      window.dataLayer = window.dataLayer || [];
-
-      function gtag() {
-          dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-L8WE2GBHQ3");
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-L8WE2GBHQ3');
   </script>
-  <!-- // ここまで Google Analytics -->
 </body>
 </html>
