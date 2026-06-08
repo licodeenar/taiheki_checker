@@ -202,9 +202,8 @@ function render() {
         btn.classList.toggle('selected', Number(btn.dataset.value) === saved);
     });
 
-    // プログレスバー
-    const answered = Object.keys(state.ratings).length;
-    const pct = Math.round((answered / total) * 100);
+    // プログレスバー（現在の問番号ベース）
+    const pct = Math.round(((pos + 1) / total) * 100);
     progressBar.style.width = pct + '%';
     progressTxt.textContent = `第 ${pos + 1} 問 / ${total} 問`;
     progressPct.textContent = pct + '%';
@@ -229,12 +228,6 @@ function selectRating(value) {
     // 最後の問題でなければ自動的に次へ
     if (state.current < allQuestions.length - 1) {
         setTimeout(() => navigate(1), 320);
-    } else {
-        // 最後の問のプログレスを更新
-        const answered = Object.keys(state.ratings).length;
-        const pct = Math.round((answered / allQuestions.length) * 100);
-        progressBar.style.width = pct + '%';
-        progressPct.textContent = pct + '%';
     }
 }
 
@@ -247,6 +240,11 @@ function navigate(dir) {
 }
 
 function submitSurvey() {
+    const unanswered = allQuestions.length - Object.keys(state.ratings).length;
+    if (unanswered > 0) {
+        if (!confirm(`${unanswered}問が未回答です。\nこのまま診断に進みますか？\n（未回答は「どちらでもない」として集計されます）`)) return;
+    }
+
     const scores = {};
     for (const type of RADAR_ORDER) scores[type] = 0;
 
