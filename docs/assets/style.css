@@ -394,17 +394,19 @@ main {
     }
 
     .rating-group {
-        gap: 6px;
+        gap: 4px;
+        flex-wrap: nowrap;
     }
 
     .rating-btn {
-        flex: 1 1 calc(33% - 6px);
+        flex: 1 1 0;
+        min-width: 0;
         max-width: unset;
-        padding: 10px 4px;
+        padding: 10px 2px;
     }
 
     .rating-btn .score-label {
-        font-size: 0.62rem;
+        font-size: 0.58rem;
     }
 
     .nav-btn {
