@@ -162,9 +162,11 @@ main {
     -webkit-tap-highlight-color: transparent;
 }
 
-.rating-btn:hover {
-    border-color: #a8a1ff;
-    background: #f5f3ff;
+@media (hover: hover) {
+    .rating-btn:hover {
+        border-color: #a8a1ff;
+        background: #f5f3ff;
+    }
 }
 
 .rating-btn.selected {
@@ -217,9 +219,11 @@ main {
     -webkit-tap-highlight-color: transparent;
 }
 
-.nav-btn:hover:not(:disabled) {
-    background: #6c63ff;
-    color: #fff;
+@media (hover: hover) {
+    .nav-btn:hover:not(:disabled) {
+        background: #6c63ff;
+        color: #fff;
+    }
 }
 
 .nav-btn:disabled {
@@ -233,9 +237,11 @@ main {
     border-color: #6c63ff;
 }
 
-.nav-btn.primary:hover {
-    background: #4b43cc;
-    border-color: #4b43cc;
+@media (hover: hover) {
+    .nav-btn.primary:hover {
+        background: #4b43cc;
+        border-color: #4b43cc;
+    }
 }
 
 /* ============================================================
@@ -263,9 +269,11 @@ main {
     transition: opacity 0.18s, transform 0.18s;
 }
 
-.cp_button:hover {
-    opacity: 0.88;
-    transform: translateY(-1px);
+@media (hover: hover) {
+    .cp_button:hover {
+        opacity: 0.88;
+        transform: translateY(-1px);
+    }
 }
 
 .cp_button:active {
