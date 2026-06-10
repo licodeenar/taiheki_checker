@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const res = urlParams.get('res');
-    const values = res ? res.split(',').map(Number) : Array(10).fill(0);
+    let values = res ? res.split(',').map(Number) : Array(10).fill(0);
+    // 不正なパラメータ（要素数違い・数値以外）は全0にフォールバック
+    if (values.length !== 10 || values.some(v => !Number.isFinite(v))) {
+        values = Array(10).fill(0);
+    }
 
     // --- レーダーチャート用の表示順変換 ---
     const originalLabels  = ['1','2','3','4','5','6','7','8','9','10'];
@@ -152,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.showAllTeiheki = function() {
+        if (!resultDiv) return;
         resultDiv.innerHTML = Object.keys(typeDescriptions).map(name => makeTable(name)).join('');
     };
 

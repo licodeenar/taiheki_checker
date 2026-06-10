@@ -216,6 +216,15 @@ function render() {
     submitWrap.style.display = isLast ? '' : 'none';
 }
 
+let autoNavTimer = null;
+
+function clearAutoNav() {
+    if (autoNavTimer !== null) {
+        clearTimeout(autoNavTimer);
+        autoNavTimer = null;
+    }
+}
+
 function selectRating(value) {
     const origIdx = state.order[state.current];
     state.ratings[origIdx] = value;
@@ -226,12 +235,17 @@ function selectRating(value) {
     });
 
     // 最後の問題でなければ自動的に次へ
+    clearAutoNav();
     if (state.current < allQuestions.length - 1) {
-        setTimeout(() => navigate(1), 320);
+        autoNavTimer = setTimeout(() => {
+            autoNavTimer = null;
+            navigate(1);
+        }, 320);
     }
 }
 
 function navigate(dir) {
+    clearAutoNav();
     const next = state.current + dir;
     if (next < 0 || next >= allQuestions.length) return;
     state.current = next;
@@ -258,6 +272,9 @@ function submitSurvey() {
 }
 
 function clearSurvey() {
+    if (Object.keys(state.ratings).length > 0) {
+        if (!confirm('これまでの回答をすべて消去して、最初からやりなおしますか？')) return;
+    }
     sessionStorage.removeItem(SS_KEY);
     location.reload();
 }
